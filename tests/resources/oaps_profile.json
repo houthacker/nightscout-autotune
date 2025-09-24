@@ -1,0 +1,451 @@
+{
+  "autosens_max": 1.2,
+  "autosens_min": 0.7,
+  "basalprofile": [
+    {
+      "i": 0,
+      "time": "00:00",
+      "timeAsSeconds": 0,
+      "value": 0.25,
+      "start": "00:00:00",
+      "minutes": 0,
+      "rate": 0.25
+    },
+    {
+      "i": 1,
+      "time": "01:00",
+      "timeAsSeconds": 3600,
+      "value": 0.25,
+      "start": "01:00:00",
+      "minutes": 60,
+      "rate": 0.25
+    },
+    {
+      "i": 2,
+      "time": "02:00",
+      "timeAsSeconds": 7200,
+      "value": 0.25,
+      "start": "02:00:00",
+      "minutes": 120,
+      "rate": 0.25
+    },
+    {
+      "i": 3,
+      "time": "03:00",
+      "timeAsSeconds": 10800,
+      "value": 0.3,
+      "start": "03:00:00",
+      "minutes": 180,
+      "rate": 0.3
+    },
+    {
+      "i": 4,
+      "time": "04:00",
+      "timeAsSeconds": 14400,
+      "value": 0.3,
+      "start": "04:00:00",
+      "minutes": 240,
+      "rate": 0.3
+    },
+    {
+      "i": 5,
+      "time": "05:00",
+      "timeAsSeconds": 18000,
+      "value": 0.3,
+      "start": "05:00:00",
+      "minutes": 300,
+      "rate": 0.3
+    },
+    {
+      "i": 6,
+      "time": "06:00",
+      "timeAsSeconds": 21600,
+      "value": 0.3,
+      "start": "06:00:00",
+      "minutes": 360,
+      "rate": 0.3
+    },
+    {
+      "i": 7,
+      "time": "07:00",
+      "timeAsSeconds": 25200,
+      "value": 0.35,
+      "start": "07:00:00",
+      "minutes": 420,
+      "rate": 0.35
+    },
+    {
+      "i": 8,
+      "time": "08:00",
+      "timeAsSeconds": 28800,
+      "value": 0.35,
+      "start": "08:00:00",
+      "minutes": 480,
+      "rate": 0.35
+    },
+    {
+      "i": 9,
+      "time": "09:00",
+      "timeAsSeconds": 32400,
+      "value": 0.35,
+      "start": "09:00:00",
+      "minutes": 540,
+      "rate": 0.35
+    },
+    {
+      "i": 10,
+      "time": "10:00",
+      "timeAsSeconds": 36000,
+      "value": 0.35,
+      "start": "10:00:00",
+      "minutes": 600,
+      "rate": 0.35
+    },
+    {
+      "i": 11,
+      "time": "11:00",
+      "timeAsSeconds": 39600,
+      "value": 0.35,
+      "start": "11:00:00",
+      "minutes": 660,
+      "rate": 0.35
+    },
+    {
+      "i": 12,
+      "time": "12:00",
+      "timeAsSeconds": 43200,
+      "value": 0.35,
+      "start": "12:00:00",
+      "minutes": 720,
+      "rate": 0.35
+    },
+    {
+      "i": 13,
+      "time": "13:00",
+      "timeAsSeconds": 46800,
+      "value": 0.35,
+      "start": "13:00:00",
+      "minutes": 780,
+      "rate": 0.35
+    },
+    {
+      "i": 14,
+      "time": "14:00",
+      "timeAsSeconds": 50400,
+      "value": 0.35,
+      "start": "14:00:00",
+      "minutes": 840,
+      "rate": 0.35
+    },
+    {
+      "i": 15,
+      "time": "15:00",
+      "timeAsSeconds": 54000,
+      "value": 0.35,
+      "start": "15:00:00",
+      "minutes": 900,
+      "rate": 0.35
+    },
+    {
+      "i": 16,
+      "time": "16:00",
+      "timeAsSeconds": 57600,
+      "value": 0.35,
+      "start": "16:00:00",
+      "minutes": 960,
+      "rate": 0.35
+    },
+    {
+      "i": 17,
+      "time": "17:00",
+      "timeAsSeconds": 61200,
+      "value": 0.35,
+      "start": "17:00:00",
+      "minutes": 1020,
+      "rate": 0.35
+    },
+    {
+      "i": 18,
+      "time": "18:00",
+      "timeAsSeconds": 64800,
+      "value": 0.34,
+      "start": "18:00:00",
+      "minutes": 1080,
+      "rate": 0.34
+    },
+    {
+      "i": 19,
+      "time": "19:00",
+      "timeAsSeconds": 68400,
+      "value": 0.35,
+      "start": "19:00:00",
+      "minutes": 1140,
+      "rate": 0.35
+    },
+    {
+      "i": 20,
+      "time": "20:00",
+      "timeAsSeconds": 72000,
+      "value": 0.33,
+      "start": "20:00:00",
+      "minutes": 1200,
+      "rate": 0.33
+    },
+    {
+      "i": 21,
+      "time": "21:00",
+      "timeAsSeconds": 75600,
+      "value": 0.3,
+      "start": "21:00:00",
+      "minutes": 1260,
+      "rate": 0.3
+    },
+    {
+      "i": 22,
+      "time": "22:00",
+      "timeAsSeconds": 79200,
+      "value": 0.3,
+      "start": "22:00:00",
+      "minutes": 1320,
+      "rate": 0.3
+    },
+    {
+      "i": 23,
+      "time": "23:00",
+      "timeAsSeconds": 82800,
+      "value": 0.3,
+      "start": "23:00:00",
+      "minutes": 1380,
+      "rate": 0.3
+    }
+  ],
+  "bg_targets": {
+    "units": "mmol",
+    "user_preferred_units": "mmol",
+    "targets": [
+      {
+        "i": 0,
+        "start": "00:00:00",
+        "offset": 0,
+        "low": 7,
+        "min_bg": 7,
+        "high": 7,
+        "max_bg": 7
+      },
+      {
+        "i": 1,
+        "start": "04:00:00",
+        "offset": 14400,
+        "low": 6.5,
+        "min_bg": 6.5,
+        "high": 6.5,
+        "max_bg": 6.5
+      },
+      {
+        "i": 2,
+        "start": "06:00:00",
+        "offset": 21600,
+        "low": 7,
+        "min_bg": 7,
+        "high": 7,
+        "max_bg": 7
+      },
+      {
+        "i": 3,
+        "start": "08:00:00",
+        "offset": 28800,
+        "low": 6.5,
+        "min_bg": 6.5,
+        "high": 6.5,
+        "max_bg": 6.5
+      },
+      {
+        "i": 4,
+        "start": "11:00:00",
+        "offset": 39600,
+        "low": 6.5,
+        "min_bg": 6.5,
+        "high": 6.5,
+        "max_bg": 6.5
+      },
+      {
+        "i": 5,
+        "start": "13:00:00",
+        "offset": 46800,
+        "low": 6.5,
+        "min_bg": 6.5,
+        "high": 6.5,
+        "max_bg": 6.5
+      },
+      {
+        "i": 6,
+        "start": "23:00:00",
+        "offset": 82800,
+        "low": 7,
+        "min_bg": 7,
+        "high": 7,
+        "max_bg": 7
+      }
+    ]
+  },
+  "carb_ratio": 15.5,
+  "carb_ratios": {
+    "first": 1,
+    "units": "grams",
+    "schedule": [
+      {
+        "i": 0,
+        "start": "00:00:00",
+        "offset": 0,
+        "ratio": 15.5
+      },
+      {
+        "i": 1,
+        "start": "06:00:00",
+        "offset": 360,
+        "ratio": 10.5
+      },
+      {
+        "i": 2,
+        "start": "09:00:00",
+        "offset": 540,
+        "ratio": 10.5
+      },
+      {
+        "i": 3,
+        "start": "10:00:00",
+        "offset": 600,
+        "ratio": 10.5
+      },
+      {
+        "i": 4,
+        "start": "11:00:00",
+        "offset": 660,
+        "ratio": 10.5
+      },
+      {
+        "i": 5,
+        "start": "12:00:00",
+        "offset": 720,
+        "ratio": 11
+      },
+      {
+        "i": 6,
+        "start": "13:00:00",
+        "offset": 780,
+        "ratio": 12
+      },
+      {
+        "i": 7,
+        "start": "16:00:00",
+        "offset": 960,
+        "ratio": 12.5
+      },
+      {
+        "i": 8,
+        "start": "17:00:00",
+        "offset": 1020,
+        "ratio": 13.5
+      },
+      {
+        "i": 9,
+        "start": "18:00:00",
+        "offset": 1080,
+        "ratio": 13.5
+      },
+      {
+        "i": 10,
+        "start": "20:00:00",
+        "offset": 1200,
+        "ratio": 13.5
+      },
+      {
+        "i": 11,
+        "start": "21:00:00",
+        "offset": 1260,
+        "ratio": 16
+      },
+      {
+        "i": 12,
+        "start": "22:00:00",
+        "offset": 1320,
+        "ratio": 16.5
+      }
+    ]
+  },
+  "dia": 5,
+  "isfProfile": {
+    "first": 1,
+    "sensitivities": [
+      {
+        "i": 0,
+        "sensitivity": 15,
+        "offset": 0,
+        "start": "00:00:00"
+      },
+      {
+        "i": 1,
+        "sensitivity": 15,
+        "offset": 240,
+        "start": "04:00:00"
+      },
+      {
+        "i": 2,
+        "sensitivity": 13.5,
+        "offset": 420,
+        "start": "07:00:00"
+      },
+      {
+        "i": 3,
+        "sensitivity": 13.5,
+        "offset": 540,
+        "start": "09:00:00"
+      },
+      {
+        "i": 4,
+        "sensitivity": 13.5,
+        "offset": 660,
+        "start": "11:00:00"
+      },
+      {
+        "i": 5,
+        "sensitivity": 13.5,
+        "offset": 720,
+        "start": "12:00:00"
+      },
+      {
+        "i": 6,
+        "sensitivity": 14,
+        "offset": 840,
+        "start": "14:00:00"
+      },
+      {
+        "i": 7,
+        "sensitivity": 14,
+        "offset": 960,
+        "start": "16:00:00"
+      },
+      {
+        "i": 8,
+        "sensitivity": 13.5,
+        "offset": 1140,
+        "start": "19:00:00"
+      },
+      {
+        "i": 9,
+        "sensitivity": 14,
+        "offset": 1200,
+        "start": "20:00:00"
+      },
+      {
+        "i": 10,
+        "sensitivity": 15,
+        "offset": 1380,
+        "start": "23:00:00"
+      }
+    ]
+  },
+  "min_5m_carbimpact": 8,
+  "out_units": "mmol",
+  "timezone": "Europe/Amsterdam"
+}

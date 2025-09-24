@@ -1,0 +1,27 @@
+{
+  "name": "nightscout-v2-profile-converter",
+  "version": "0.0.1",
+  "description": "Convert a Nightscout v2 profile to OpenAPS format",
+  "keywords": [
+    "nightscout",
+    "oref0",
+    "openaps",
+    "autotune"
+  ],
+  "license": "GPL-3.0-or-later",
+  "author": {
+    "name": "houthacker",
+    "url": "https://github.com/houthacker"
+  },
+  "type": "module",
+  "main": "index.js",
+  "module": "main.js",
+  "scripts": {
+    "test": "node --test tests/*.js"
+  },
+  "dependencies": {
+    "esm": "^3.2.25",
+    "node-fetch": "3.3.2",
+    "d3-time-format": "4.1.0"
+  }
+}

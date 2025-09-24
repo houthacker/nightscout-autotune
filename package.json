@@ -20,6 +20,7 @@
     "test": "node --test tests/*.js"
   },
   "dependencies": {
+    "command-line-args": "6.0.1",
     "esm": "^3.2.25",
     "node-fetch": "3.3.2",
     "d3-time-format": "4.1.0"

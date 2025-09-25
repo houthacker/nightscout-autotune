@@ -1,7 +1,7 @@
 {
-  "name": "nightscout-v2-profile-converter",
+  "name": "nightscout-profile-converter",
   "version": "0.0.1",
-  "description": "Convert a Nightscout v2 profile to OpenAPS format",
+  "description": "Convert a Nightscout profile to OpenAPS format",
   "keywords": [
     "nightscout",
     "oref0",
@@ -18,6 +18,9 @@
   "module": "main.js",
   "scripts": {
     "test": "node --test tests/*.js"
+  },
+  "bin": {
+    "nightscout-profile-converter": "main.js"
   },
   "dependencies": {
     "command-line-args": "6.0.1",

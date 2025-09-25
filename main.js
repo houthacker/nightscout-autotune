@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import cli_args from 'command-line-args';
 import cli_usage from 'command-line-usage';
 import { fetch_profile } from './src/fetch_profile.js';

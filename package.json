@@ -1,7 +1,7 @@
 {
-  "name": "nightscout-profile-converter",
+  "name": "nightscout-autotune",
   "version": "0.0.1",
-  "description": "Convert a Nightscout profile to OpenAPS format",
+  "description": "Run OpenAPS autotune using an automatically converted Nightscout profile.",
   "keywords": [
     "nightscout",
     "oref0",
@@ -20,7 +20,7 @@
     "test": "node --test tests/*.js"
   },
   "bin": {
-    "nightscout-profile-converter": "main.js"
+    "nightscout-autotune": "main.js"
   },
   "dependencies": {
     "command-line-args": "6.0.1",

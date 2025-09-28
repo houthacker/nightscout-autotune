@@ -13,6 +13,7 @@
     "name": "houthacker",
     "url": "https://github.com/houthacker"
   },
+  "repository": "github:houthacker/nightscout-autotune",
   "type": "module",
   "main": "index.js",
   "module": "main.js",
@@ -20,7 +21,9 @@
     "test": "node --test tests/*.js"
   },
   "bin": {
-    "nightscout-autotune": "main.js"
+    "convert-ns-profile": "main.js",
+    "nightscout-autotune": "bin/app.sh",
+    "run-autotune": "bin/run-autotune.sh"
   },
   "dependencies": {
     "command-line-args": "6.0.1",

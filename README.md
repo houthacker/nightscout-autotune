@@ -16,6 +16,14 @@ If you want to use the dockerized version of this app, just pull `houthacker42/w
   * Node Version Manager: https://github.com/nvm-sh/nvm
   * nodejs
 
+### Supported architectures
+#### Dockerized app
+  * linux/amd64
+  * linux/arm64
+
+### Standalone
+  * Native builds
+
 ### Installation
 #### Dockerized app
 ```bash

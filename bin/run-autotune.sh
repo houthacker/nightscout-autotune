@@ -80,12 +80,10 @@ validate_arguments () {
     fi
 
     # oref0-autotune uses an environment variable to retrieve the Nightscout API secret or token.
-    if [[ ! -z ${secret} ]]; then
+    if [ ! -z ${secret} ]; then
         export API_SECRET=${secret}
-        #echo "API_SECRET: $HASHED"
-    elif [[ ! -z ${ns_token} ]]; then
+    elif [ ! -z ${ns_token} ]; then
         export API_SECRET="token="${ns_token}
-        #echo "API_SECRET: token=$HASHED"
     fi
 }
 
@@ -93,7 +91,7 @@ run_autotune () {
     end_date=$(date --date="yesterday" +%F)
     start_date=$(date --date="${end_date} -${autotune_days} day" +%F)
 
-    oref0-autotune --dir=${autotune_workdir} --ns-host=${ns_host} --start-date=${start_date} --end-date=${end_date} --log=true --categorize-uam-as-basal=${uam_as_basal}
+    API_SECRET=$API_SECRET oref0-autotune --dir=${autotune_workdir} --ns-host=${ns_host} --start-date=${start_date} --end-date=${end_date} --log=true --categorize-uam-as-basal=${uam_as_basal}
 }
 
 validate_arguments

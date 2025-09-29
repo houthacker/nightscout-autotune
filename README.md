@@ -50,7 +50,7 @@ $ docker image pull houthacker42/nightscout-autotune:latest
 #### Dockerized app
 Run the image without arguments to see its usage description and examples
 ```bash
-$ docker run --rm nightscout-autotune
+$ docker run --rm houthacker42/nightscout-autotune:latest
 ```
 
 #### Standalone app

@@ -20,7 +20,7 @@ If you want to use the dockerized version of this app, just pull `houthacker42/w
 #### Dockerized app
 ```bash
 # Just pull the image
-$ docker image pull houthacker42/wearenotwaiting:nightscout-autotune
+$ docker image pull houthacker42/nightscout-autotune:latest
 ```
 
 #### Standalone

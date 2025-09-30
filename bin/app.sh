@@ -138,7 +138,7 @@ show_usage () {
 if [ "${@-x}" = "--help" ]; then
     show_usage
     exit 0
-elif [ -z "$@" ] || [ -z "$NS_HOST" ] || [ -z "$AUTOTUNE_DAYS" ] || [ -z "$UAM_AS_BASAL" ]; then
+elif [ -z "$NS_HOST" ] || [ -z "$AUTOTUNE_DAYS" ] || [ -z "$UAM_AS_BASAL" ]; then
     show_usage
     exit 1
 fi

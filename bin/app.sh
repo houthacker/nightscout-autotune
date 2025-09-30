@@ -138,7 +138,7 @@ show_usage () {
 if [ "${@-x}" = "--help" ]; then
     show_usage
     exit 0
-elif [ -z "$@" ] || [ -z "$NS_HOST" ] || [ -z "$AUTOTUNE_DAYS" ] || [ -z "$UAM_AS_BASAL" ]; then
+elif [ -z "$NS_HOST" ] || [ -z "$AUTOTUNE_DAYS" ] || [ -z "$UAM_AS_BASAL" ]; then
     show_usage
     exit 1
 fi
@@ -159,4 +159,4 @@ cp $SETTINGS_DIR/profile.json $SETTINGS_DIR/pumpprofile.json
 cp $SETTINGS_DIR/profile.json $SETTINGS_DIR/autotune.json
 echo "Done preparing for oref0-autotune."
 
-run-autotune -h=$NS_HOST -s=$NS_API_SECRET -t=$NS_TOKEN -w=$OPENAPS_WORKDIR -d=$AUTOTUNE_DAYS -m=$UAM_AS_BASAL
+run-autotune -h=$NS_HOST -s=$NS_API_SECRET -t=$NS_TOKEN -w=$OPENAPS_WORKDIR -d=$AUTOTUNE_DAYS -m=$UAM_AS_BASALgit c

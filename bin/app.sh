@@ -135,11 +135,12 @@ show_usage () {
     fi
 }
 
-if [ -z "$@" ] || [ "$@" = "--help" ]; then
-    if [ -z "$NS_HOST" ] || [ -z "$AUTOTUNE_DAYS" ] || [ -z "$UAM_AS_BASAL" ]; then
-        show_usage
-        exit 0
-    fi
+if [ "${@-x}" = "--help" ]; then
+    show_usage
+    exit 0
+elif [ -z "$@" ] || [ -z "$NS_HOST" ] || [ -z "$AUTOTUNE_DAYS" ] || [ -z "$UAM_AS_BASAL" ]; then
+    show_usage
+    exit 1
 fi
 
 PROFILE_DATA=$(convert-ns-profile --ns-host $NS_HOST --api-secret $NS_API_SECRET --token $NS_TOKEN --profile $NS_PROFILE --min-5m-carb-impact $MIN_5MIN_CARBIMPACT --autosens-min $AUTOSENS_MIN --autosens-max $AUTOSENS_MAX)

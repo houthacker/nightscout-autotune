@@ -20,7 +20,7 @@ show_docker_usage () {
         docker run  -e NS_HOST=<ns_host> -e AUTOTUNE_DAYS=<autotune_days> -e UAM_AS_BASAL=<true|false> 
                     [-e NS_API_SECRET=<api_secret>] [-e NS_TOKEN=<token>] [-e NS_PROFILE=<profile_name>]
                     [-e MIN_5MIN_CARBIMPACT=<min_5m_carb_impact>] 
-                    [-e AUTOSENS_MIN=<autosens_min>] [-e AUTOSENS_MAX=<autosens_max>]
+                    [-e AUTOSENS_MIN=<autosens_min>] [-e AUTOSENS_MAX=<autosens_max>] [-e INSULIN_TYPE=<rapid-acting|ultra-rapid>]
     
     DESCRIPTION
         Run OpenAPS autotune against a Nightscout profile.
@@ -58,6 +58,9 @@ show_docker_usage () {
         -e AUTOSENS_MAX=<autosens_max>
             The multiplier for adjustments during insulin resistance. Defaults to 1.2 if omitted.
 
+        -e INSULIN_TYPE=<rapid-acting|ultra-rapid>
+            The type of insulin used to determine how fast is acts and decays. Defaults to 'rapid-acting' if omitted.
+
         -e OPENAPS_WORKDIR=<workdir>
             The working directory. Defaults to '/tmp/openaps' if omitted.
 
@@ -75,7 +78,8 @@ show_standalone_usage () {
         NS_HOST=<ns_host> AUTOTUNE_DAYS=<autotune_days> UAM_AS_BASAL=<true|false> 
         [NS_API_SECRET=<api_secret>] [NS_TOKEN=<token>] [NS_PROFILE=<profile_name>]
         [MIN_5MIN_CARBIMPACT=<min_5m_carb_impact>] 
-        [AUTOSENS_MIN=<autosens_min>] [AUTOSENS_MAX=<autosens_max>] $0 [help]
+        [AUTOSENS_MIN=<autosens_min>] [AUTOSENS_MAX=<autosens_max>] 
+        [INSULIN_TYPE=<rapid-acting|ultra-rapid>] $0 [help]
     
     DESCRIPTION
         Run OpenAPS autotune against a Nightscout profile.
@@ -115,6 +119,9 @@ show_standalone_usage () {
 
         AUTOSENS_MAX=<autosens_max>
             The multiplier for adjustments during insulin resistance. Defaults to 1.2 if omitted.
+        
+        INSULIN_TYPE=<rapid-acting|ultra-rapid>
+            The type of insulin used to determine how fast is acts and decays. Defaults to 'rapid-acting' if omitted.
 
         OPENAPS_WORKDIR=<workdir>
             The working directory. Defaults to '/tmp/openaps' if omitted.
@@ -143,7 +150,9 @@ elif [ -z "$NS_HOST" ] || [ -z "$AUTOTUNE_DAYS" ] || [ -z "$UAM_AS_BASAL" ]; the
     exit 1
 fi
 
-PROFILE_DATA=$(convert-ns-profile --ns-host $NS_HOST --api-secret $NS_API_SECRET --token $NS_TOKEN --profile $NS_PROFILE --min-5m-carb-impact $MIN_5MIN_CARBIMPACT --autosens-min $AUTOSENS_MIN --autosens-max $AUTOSENS_MAX)
+PROFILE_DATA=$(convert-ns-profile --ns-host $NS_HOST --api-secret $NS_API_SECRET --token $NS_TOKEN --profile $NS_PROFILE \
+    --min-5m-carb-impact $MIN_5MIN_CARBIMPACT --autosens-min $AUTOSENS_MIN --autosens-max $AUTOSENS_MAX \
+    --insulin-type $INSULIN_TYPE)
 
 # Prepare for autotune
 echo "Preparing oref0-autotune directory structure in ${OPENAPS_WORKDIR}..."

@@ -23,12 +23,14 @@
   "bin": {
     "convert-ns-profile": "main.js",
     "nightscout-autotune": "bin/app.sh",
+    "html-export": "src/html_export.js",
     "run-autotune": "bin/run-autotune.sh"
   },
   "dependencies": {
     "command-line-args": "6.0.1",
     "command-line-usage": "7.0.3",
     "d3-time-format": "4.1.0",
+    "ejs": "^3.1.10",
     "esm": "^3.2.25",
     "node-fetch": "3.3.2"
   }

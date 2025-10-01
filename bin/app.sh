@@ -5,6 +5,8 @@ set -e
 
 # Processing directory
 OPENAPS_WORKDIR=${OPENAPS_WORKDIR:-"/tmp/autotune"}
+RECOMMENDATIONS_FILE=${OPENAPS_WORKDIR}"/autotune/autotune_recommendations.log"
+HTML_EXPORT=${HTML_EXPORT:="false"}
 
 running_inside_docker () {
     if [ $(cat /proc/1/cgroup | grep docker | wc -l) -eq 0 ]; then
@@ -63,6 +65,9 @@ show_docker_usage () {
 
         -e OPENAPS_WORKDIR=<workdir>
             The working directory. Defaults to '/tmp/openaps' if omitted.
+        
+        -e HTML_EXPORT=<true|false>
+            Export the Autotune recommendations to an HTML file. Defaults to 'false' if omitted.
 
     EXAMPLES
         Running the image against a locked-down host using a dedicated token that is stored plaintext in a file:
@@ -126,6 +131,9 @@ show_standalone_usage () {
         OPENAPS_WORKDIR=<workdir>
             The working directory. Defaults to '/tmp/openaps' if omitted.
 
+        HTML_EXPORT=<true|false>
+            Export the Autotune recommendations to an HTML file. Defaults to 'false' if omitted.
+
     EXAMPLES
         Running against a locked-down host using a dedicated token that is stored plaintext in a file:
 
@@ -168,4 +176,4 @@ cp $SETTINGS_DIR/profile.json $SETTINGS_DIR/pumpprofile.json
 cp $SETTINGS_DIR/profile.json $SETTINGS_DIR/autotune.json
 echo "Done preparing for oref0-autotune."
 
-run-autotune -h=$NS_HOST -s=$NS_API_SECRET -t=$NS_TOKEN -w=$OPENAPS_WORKDIR -d=$AUTOTUNE_DAYS -m=$UAM_AS_BASAL
+run-autotune -h=$NS_HOST -s=$NS_API_SECRET -t=$NS_TOKEN -w=$OPENAPS_WORKDIR -d=$AUTOTUNE_DAYS -m=$UAM_AS_BASAL -e=$HTML_EXPORT

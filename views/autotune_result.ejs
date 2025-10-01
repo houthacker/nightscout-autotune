@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Autotune Recommendations</title>
+        <meta charset="utf8">
+    </head>
+    <body style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: rgb(51, 51, 51);">
+        <header>
+            <h2><a href="<%= result.options.ns_host %>"><%= result.options.ns_host %></a></h2>
+            <p>Based on data entered between <%= result.options.date_from %> and <%= result.options.date_to %></p>
+            <% if (result.options.uam) { %>
+                <p>
+                    Unannounced meals were ignored and counted towards basal recommendations. If not all carbs were recorded, re-run with the UAM_AS_BASAL option set to false.
+                </p>
+            <% } %>
+        </header>
+        <main>
+            <table width="50%">
+                <thead>
+                    <tr>
+                        <th style="border-top: solid 1px #ddd; padding: 8px">Parameter</th>
+                        <th style="border-top: solid 1px #ddd; padding: 8px">Original&nbsp;Value</th>
+                        <th style="border-top: solid 1px #ddd; padding: 8px">Autotune&nbsp;Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="border-top: solid 1px #ddd; padding: 8px"><%= isf.type %></th>
+                        <td style="border-top: solid 1px #ddd; padding: 8px"><%= isf.current_value %></td>
+                        <td style="border-top: solid 1px #ddd; padding: 8px"><%= isf.recommended_value %></td>
+                    </tr>
+                    <tr>
+                        <th style="border-top: solid 1px #ddd; padding: 8px"><%= cr.type %></th>
+                        <td style="border-top: solid 1px #ddd; padding: 8px"><%= cr.current_value %></td>
+                        <td style="border-top: solid 1px #ddd; padding: 8px"><%= cr.recommended_value %></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Basal Suggestions</h2>
+            <table width="50%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th width="25%" style="border-top: solid 1px #ddd; padding: 8px">Time</th>
+                        <th width="25%" style="border-top: solid 1px #ddd; padding: 8px">Original</th>
+                        <th width="25%" style="border-top: solid 1px #ddd; padding: 8px">Autotune Result</th>
+                        <th width="25%" style="border-top: solid 1px #ddd; padding: 8px">Rounded&nbsp;to 0.05</th>
+                    </tr>
+                </thead>
+                <tbody style="tr:nth-child(odd) { background-color: #f9f9f9 }">
+                    <% for (let i = 0; i < basal.length; i++) { %>
+                    <% let b = basal[i]; %>
+                    <% if ( i % 2 === 0) { %>
+                        <tr style="background-color: #f9f9f9;">
+                    <% } else { %>
+                        <tr>
+                    <% } %>
+                            <th style="border-top: solid 1px #ddd; padding: 8px"><%= String(b.when.getHours()).padStart(2, '0') + ":" + String(b.when.getMinutes()).padStart(2, '0'); %></th>
+                            <td style="border-top: solid 1px #ddd; padding: 8px"><%= b.current_value %></td>
+                            <td style="border-top: solid 1px #ddd; padding: 8px"><%= b.recommended_value %></td>
+                            <td style="border-top: solid 1px #ddd; padding: 8px"><%= b.rounded_recommendation %></td>
+                        </tr>
+                    <% }; %>
+                </tbody>
+            </table>
+        </main>
+        <footer>
+            <p>This job was run with Autotune version <%= result.options.autotune_version %></p>
+        </footer>
+    </body>
+</html>

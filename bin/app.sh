@@ -5,6 +5,7 @@ set -e
 
 # Processing directory
 OPENAPS_WORKDIR=${OPENAPS_WORKDIR:-"/tmp/autotune"}
+RECOMMENDATIONS_FILE=${OPENAPS_WORKDIR}"/autotune/autotune_recommendations.log"
 
 running_inside_docker () {
     if [ $(cat /proc/1/cgroup | grep docker | wc -l) -eq 0 ]; then

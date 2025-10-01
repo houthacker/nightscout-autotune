@@ -142,3 +142,12 @@ export class AutotuneResult {
         return new AutotuneResult(recommendations);
     }
 }
+
+/**
+ * Creates an HTML page of the given `AutotuneResult`.
+ * @param {AutotuneResult} result The autotune recommendations.
+ * @returns {string} The HTML representation of the given result.
+ */
+export function result_to_html(result) {
+    throw new Error('Not implemented');
+}

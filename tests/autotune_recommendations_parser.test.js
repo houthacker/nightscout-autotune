@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { AutotuneResult } from '../src/parse_autotune_recommendations.js';
+import { AutotuneResult } from '../src/autotune_recommendations_parser.js';
 import { fileURLToPath } from 'url';
 import assert from 'node:assert';
 

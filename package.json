@@ -23,6 +23,7 @@
   "bin": {
     "convert-ns-profile": "main.js",
     "nightscout-autotune": "bin/app.sh",
+    "html-export": "src/html_export.js",
     "run-autotune": "bin/run-autotune.sh"
   },
   "dependencies": {

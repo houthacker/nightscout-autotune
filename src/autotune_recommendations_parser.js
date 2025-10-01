@@ -29,6 +29,10 @@ function is_numeric(str) {
 
 /**
  * A data class to store options used when executing an autotune job.
+ * 
+ * ##### IMPORTANT #####
+ * Keep in sync with parameters at `html_export.js`!
+ * 
  * @typedef {Object} AutotuneOptions
  * @property {string} ns_host - The URL of the Nightscout instance autotune ran against.
  * @property {string} date_from - The start date Autotune used to analyze the data.
@@ -37,11 +41,15 @@ function is_numeric(str) {
  * @property {string} autotune_version - The Autotune version used to compile the recommendation.
  */
 export class AutotuneOptions {
-    ns_host;
-    date_from;
-    date_to;
-    uam;
-    autotune_version;
+
+    constructor(ns_host, date_from, date_to, uam, autotune_version) {
+        this.ns_host = ns_host;
+        this.date_from = date_from;
+        this.date_to = date_to;
+        this.uam = uam;
+        this.autotune_version = autotune_version;
+    }
+
 }
 
 /**
@@ -148,7 +156,7 @@ export class AutotuneResult {
     /**
      * Creates a new `AutotuneResult` based on an autotune recommendations log file.
      * @param {string} path The path to the recommendations log file. May be absolute or relative.
-     * @param {object} options The autotune parameters. Defaults to `{}`.
+     * @param {AutotuneOptions} options The autotune parameters. Defaults to `{}`.
      * @returns {AutotuneResult} The parsed autotune result.
      */
     static async create_from_log(path, options = {}) {
@@ -204,6 +212,6 @@ export async function result_to_html(autotune_result) {
         result: autotune_result, 
         isf: autotune_result.find_isf(),
         cr: autotune_result.find_cr(),
-        basal: autotune_result.find_basal()
+        basal: autotune_result.find_basal(),
     });
 }

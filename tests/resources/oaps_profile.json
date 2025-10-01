@@ -446,6 +446,7 @@
     ]
   },
   "min_5m_carbimpact": 8,
+  "curve": "rapid-acting",
   "out_units": "mmol",
   "timezone": "Europe/Amsterdam"
 }

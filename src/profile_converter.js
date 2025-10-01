@@ -1,5 +1,14 @@
 import { timeParse } from 'd3-time-format';
 
+/**
+ * The type of insulin in the profile.
+ * @typedef {('rapid-acting'|'ultra-rapid')} InsulinType
+ */
+export const InsulinType = {
+    RAPID: 'rapid-acting',
+    ULTRA_RAPID: 'ultra-rapid'
+}
+
 function normalize_ns_timed_element(element) {
     let time = {...element}
     if(time.timeAsSeconds === undefined) {
@@ -27,16 +36,18 @@ function normalize_ns_timed_element(element) {
  * @param {number} min_5m_carbimpact The minimal carbs absorption per 5 minutes.
  * @param {number} autosens_min The multiplier for adjustments during insulin sensitivity.
  * @param {number} autosens_max The multiplier for adjustments during insulin resistance.
+ * @param {InsulinType} curve The insulin type to infer how quickly it acts and decays.
  * @returns The OAPS profile.
  */
-export function ns_to_oaps(ns_profile, min_5m_carbimpact = 8.0, autosens_min = 0.7, autosens_max = 1.2) {
+export function ns_to_oaps(ns_profile, min_5m_carbimpact = 8.0, autosens_min = 0.7, autosens_max = 1.2, curve = InsulinType.RAPID) {
     let oaps_profile = {
         min_5m_carbimpact: min_5m_carbimpact,
         dia: ns_profile.dia,
         autosens_max: autosens_max,
         autosens_min: autosens_min,
         out_units: ns_profile.units,
-        timezone: ns_profile.timezone
+        timezone: ns_profile.timezone,
+        curve: curve
     };
 
     // Basal profile

@@ -2,10 +2,11 @@
 import cli_args from 'command-line-args';
 import cli_usage from 'command-line-usage';
 import { fetch_profile } from './src/fetch_profile.js';
-import { ns_to_oaps } from './src/profile_converter.js';
+import { ns_to_oaps, InsulinType } from './src/profile_converter.js';
 
 const AUTOSENS_MIN_DEFAULT = 0.7;
 const AUTOSENS_MAX_DEFAULT = 1.2;
+const INSULIN_TYPE_DEFAULT = InsulinType.RAPID;
 const MIN_5M_CARBIMPACT_DEFAULT = 8.0;
 
 const option_definitions = [
@@ -15,6 +16,7 @@ const option_definitions = [
     { name: 'profile', alias: 'p', type: String, description: 'The name of the profile to use. If omitted, the default profile is used.' },   
     { name: 'autosens-min', type: Number, defaultValue: AUTOSENS_MIN_DEFAULT, description: 'Multiplier for adjustments during insulin sensitivity. Defaults to 0.7 if omitted.' },
     { name: 'autosens-max', type: Number, defaultValue: AUTOSENS_MAX_DEFAULT, description: 'Multiplier for adjustments during insulin resistance. Defaults to 1.2 if omitted.' },
+    { name: 'insulin-type', alias: 'i', type: String, defaultValue: INSULIN_TYPE_DEFAULT, description: 'The type of insulin to derive how fast it acts and decays.'},
     { name: 'min-5m-carb-impact', alias: 'c', type: Number, defaultValue: MIN_5M_CARBIMPACT_DEFAULT, description: 'Minimum carb absorption in grams per 5 minutes. Defaults to 8.0 if omitted.' },
     { name: 'help', alias: 'h', type: String, description: 'Print usage instructions.' }
 ];
@@ -56,6 +58,7 @@ function print_usage() {
     } else {
         let autosens_min = options['autosens-min'] || AUTOSENS_MIN_DEFAULT;
         let autosens_max = options['autosens-max'] || AUTOSENS_MAX_DEFAULT;
+        let insulin_type = options['insulin-type'] || INSULIN_TYPE_DEFAULT;
         let min_5m_carbimpact = options['min-5m-carb-impact'] || MIN_5M_CARBIMPACT_DEFAULT;
         let ns_host = options['ns-host'];
         let api_secret = options['api-secret'] || undefined;
@@ -81,7 +84,7 @@ function print_usage() {
         
 
         let ns_profile = await fetch_profile(ns_host, api_secret, ns_token, profile);
-        let oaps_profile = ns_to_oaps(ns_profile, min_5m_carbimpact, autosens_min, autosens_max);
+        let oaps_profile = ns_to_oaps(ns_profile, min_5m_carbimpact, autosens_min, autosens_max, insulin_type);
         console.log(JSON.stringify(oaps_profile, null, 2));
     }
 })();

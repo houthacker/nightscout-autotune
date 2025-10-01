@@ -1,5 +1,7 @@
 import { open } from 'node:fs/promises';
 import { timeParse } from 'd3-time-format';
+import { fileURLToPath } from 'url';
+import ejs from 'ejs';
 
 /**
  * @typedef {number} RecommendationType
@@ -23,6 +25,23 @@ const CR_LINE_START = 'Carb Ratio';
  */
 function is_numeric(str) {
     return !isNaN(Number(str));
+}
+
+/**
+ * A data class to store options used when executing an autotune job.
+ * @typedef {Object} AutotuneOptions
+ * @property {string} ns_host - The URL of the Nightscout instance autotune ran against.
+ * @property {string} date_from - The start date Autotune used to analyze the data.
+ * @property {string} date_to - The end date (inclusive) Autotune used to analyze the data.
+ * @property {boolean} uam - Whether Unannounced meals counted towards basal recommendations.
+ * @property {string} autotune_version - The Autotune version used to compile the recommendation.
+ */
+export class AutotuneOptions {
+    ns_host;
+    date_from;
+    date_to;
+    uam;
+    autotune_version;
 }
 
 /**
@@ -117,18 +136,22 @@ export class AutotuneResult {
 
         /**
          * Create a new `AutotuneResult`.
+         * 
          * @param {Recommendation[]} recommendations The recommendations.
+         * @param {AutotuneOptions} options The arguments used to run autotune.
          */
-    constructor(recommendations) {
+    constructor(recommendations, options) {
+        this.options = options
         this.recommendations = recommendations;
     }
 
     /**
      * Creates a new `AutotuneResult` based on an autotune recommendations log file.
      * @param {string} path The path to the recommendations log file. May be absolute or relative.
+     * @param {object} options The autotune parameters. Defaults to `{}`.
      * @returns {AutotuneResult} The parsed autotune result.
      */
-    static async create_from_log(path) {
+    static async create_from_log(path, options = {}) {
         const file = await open(path);
 
         let recommendations = [];
@@ -139,15 +162,48 @@ export class AutotuneResult {
             }
         }
 
-        return new AutotuneResult(recommendations);
+        return new AutotuneResult(recommendations, options);
+    }
+
+    /**
+     * Finds the Insuline Sensivitiy Factor recommendation.
+     * @returns { Recommendation } The ISF recommendation, or `{}` if no such recommendation exists.
+     */
+    find_isf() {
+        let filtered = this.recommendations.filter(r => r.type == RecommendationType.ISF);
+        return filtered[0] || {};
+    }
+
+    /**
+     * Finds the Carb Ratio recommendation.
+     * @returns { Recommendation } The CR recommendation, or `{}` if not such recommendation exists.
+     */
+    find_cr() {
+        let filtered = this.recommendations.filter(r => r.type == RecommendationType.CR);
+        return filtered[0] || {};
+    }
+
+    /**
+     * 
+     * Finds all basal recommendations.
+     * @return { BasalRecommendation[] } The basal recommendations.
+     */
+    find_basal() {
+        return this.recommendations.filter(r => r.type == RecommendationType.BASAL);
     }
 }
 
 /**
  * Creates an HTML page of the given `AutotuneResult`.
- * @param {AutotuneResult} result The autotune recommendations.
+ * @param {AutotuneResult} autotune_result The autotune recommendations.
  * @returns {string} The HTML representation of the given result.
  */
-export function result_to_html(result) {
-    throw new Error('Not implemented');
+export async function result_to_html(autotune_result) {
+    let path = fileURLToPath(import.meta.resolve(import.meta.dirname + '/../views/autotune_result.ejs'));
+    return await ejs.renderFile(path, { 
+        result: autotune_result, 
+        isf: autotune_result.find_isf(),
+        cr: autotune_result.find_cr(),
+        basal: autotune_result.find_basal()
+    });
 }

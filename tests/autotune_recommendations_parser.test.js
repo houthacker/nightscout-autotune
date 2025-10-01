@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { AutotuneResult } from '../src/autotune_recommendations_parser.js';
+import { AutotuneResult, result_to_html } from '../src/autotune_recommendations_parser.js';
 import { fileURLToPath } from 'url';
 import assert from 'node:assert';
 
@@ -8,9 +8,17 @@ function fixture_path(name) {
 }
 
 test('parse an autotune recommendations log', async (t) => {
-    let autotune_result = await AutotuneResult.create_from_log(fixture_path('autotune_recommendations.log'));
+    const expected_options = {
+        ns_host: 'https://my.nightscout.host',
+        date_from: '2025-09-01',
+        date_to: '21025-09-30',
+        uam: false,
+        version: '0.7.1'
+    };
+    let autotune_result = await AutotuneResult.create_from_log(fixture_path('autotune_recommendations.log'), expected_options);
 
     assert.deepStrictEqual(JSON.parse(JSON.stringify(autotune_result)), {
+        options: expected_options,
         recommendations: [
             { type: "ISF", current_value: 15, recommended_value: 17.315, rounded_recommendation: 17.3 },
             { type: "CR", current_value: 15.5 , recommended_value: 14.494 , rounded_recommendation: 14.5 }, 
@@ -40,4 +48,17 @@ test('parse an autotune recommendations log', async (t) => {
             { type: "BASAL" , current_value: 0.3 , recommended_value: 0.349 , rounded_recommendation: 0.35 , when: "1900-01-01T23:00:00.000Z" , days_missing: 1 },
         ]
     });
+});
+
+test('render an autotune result to HTML', async (t) => {
+    let autotune_result = await AutotuneResult.create_from_log(fixture_path('autotune_recommendations.log'), {
+        ns_host: 'https://my.nightscout.host',
+        date_from: '2025-09-01',
+        date_to: '2025-09-30',
+        uam: true,
+        version: '0.7.1'
+    });
+
+    let html = await result_to_html(autotune_result);
+    console.log(html);
 });

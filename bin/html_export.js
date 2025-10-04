@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import cli_args from 'command-line-args';
 import cli_usage from 'command-line-usage';
-import { AutotuneResult, AutotuneOptions, result_to_html } from './autotune_recommendations_parser.js';
+import { AutotuneResult, AutotuneOptions, result_to_html } from '../src/autotune_recommendations_parser.js';
 
 const option_definitions = [
     { name: 'recommendations-file', alias: 'f', type: String, description: 'The path to Autotune recommendations log file.' },

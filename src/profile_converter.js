@@ -29,6 +29,31 @@ function normalize_ns_timed_element(element) {
 }
 
 /**
+ * @typedef {Object} TimedValue
+ * @property {number} timeAsSeconds - The time of day represented in seconds, e.g. `14400` for `04:00`.
+ * @property {number} value - The value to average
+ */
+
+/**
+ * Calculates the weighted average of CR and ISF elements from a NS profile.
+ * This function assigns every hour-of-day a weight of 1.
+ * 
+ * @param {TimedValue[]} elements The elements to calculate the weighted average of.
+ * @returns {number} The weighted average.
+ */
+function calculate_weighted_average(elements) {
+    let maxTimeAsSeconds = 86400;
+    let sum = 0;
+    for (const [idx, element] of elements.entries()) {
+        let nextTimeAsSeconds = elements.length === idx + 1 ? maxTimeAsSeconds : elements[idx + 1].timeAsSeconds;
+        let elementHours = (nextTimeAsSeconds - element.timeAsSeconds) / 3600;
+        sum += (element.value * elementHours);
+    }
+
+    return parseFloat((sum / 24).toFixed(1));
+}
+
+/**
  * Converts the given `ns_profile` to an OAPS profile, analog to the OAPS python implementation.
  * 
  * @see https://github.com/openaps/oref0/blob/v0.7.1/bin/get_profile.py
@@ -103,57 +128,41 @@ export function ns_to_oaps(ns_profile, min_5m_carbimpact = 8.0, autosens_min = 0
         });
     }
 
-    // Insulin sensitivity profile
+    // Insulin sensitivity profile.
+    // Autotune only uses the first ISF value from the OpenAPS profile.
+    // So we calculate the weighted average of the NS profile sensitivities
+    // and add just one element here, instead of parsing all ISF elements 
+    // from the NS profile.
+    // A snippet that uses all ISF elements, if autotune ever is going to do that,
+    // can be found in the git history.
     oaps_profile.isfProfile = {
         first: 1,
-        sensitivities: []
+        sensitivities: [{
+            i: 0,
+            start: "00:00:00",
+            offset: 0,
+            sensitivity: calculate_weighted_average(ns_profile.sens),
+        }]
     };
-    let isf_p = {};
-    for(const sens of ns_profile.sens) {
-        let normalized = normalize_ns_timed_element(sens);
-        isf_p[normalized.time] = isf_p[normalized.time] || {};
-        isf_p[normalized.time] = {
-            sensitivity: normalized.value,
-            start: normalized.start,
-            offset: normalized.minutes
-        };
-    }
-    for(const time of Object.keys(isf_p).sort()) {
-        let ttime = isf_p[time];
-        oaps_profile.isfProfile.sensitivities.push({
-            i: oaps_profile.isfProfile.sensitivities.length,
-            sensitivity: ttime.sensitivity,
-            offset: ttime.offset,
-            start: ttime.start
-        });
-    }
 
-    // Carb ratio(s)
+    // Carb ratio(s).
+    // Autotune only uses the first ISF value from the OpenAPS profile.
+    // So we calculate the weighted average of the NS profile ratios
+    // and add just one element here, instead of parsing all CR elements 
+    // from the NS profile.
+    // A snippet that uses all CR elements, if autotune ever is going to do that,
+    // can be found in the git history.
+    oaps_profile.carb_ratio = calculate_weighted_average(ns_profile.carbratio);
     oaps_profile.carb_ratios = {
         first: 1,
         units: "grams",
-        schedule: []
+        schedule: [{
+            i: 0,
+            offset: 0,
+            ratio: oaps_profile.carb_ratio,
+            start: "00:00:00",
+        }]
     };
-    let cr_p = {};
-    for(const cr of ns_profile.carbratio) {
-        let normalized = normalize_ns_timed_element(cr);
-        cr_p[normalized.time] = cr_p[normalized.time] || {};
-        cr_p[normalized.time] = {
-            start: normalized.start,
-            offset: normalized.minutes,
-            ratio: normalized.value
-        };
-    }
-    for(const time of Object.keys(cr_p).sort()) {
-        let ttime = cr_p[time];
-        oaps_profile.carb_ratios.schedule.push({
-            i: oaps_profile.carb_ratios.schedule.length,
-            ...ttime
-        });
-    }
-
-    // TODO calculate weighted average?
-    oaps_profile.carb_ratio = oaps_profile.carb_ratios.schedule[0].ratio
 
     // Sort profile by keys
     let sorted_profile = {}

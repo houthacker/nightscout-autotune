@@ -288,7 +288,7 @@
       }
     ]
   },
-  "carb_ratio": 15.5,
+  "carb_ratio": 13.3,
   "carb_ratios": {
     "first": 1,
     "units": "grams",
@@ -297,79 +297,7 @@
         "i": 0,
         "start": "00:00:00",
         "offset": 0,
-        "ratio": 15.5
-      },
-      {
-        "i": 1,
-        "start": "06:00:00",
-        "offset": 360,
-        "ratio": 10.5
-      },
-      {
-        "i": 2,
-        "start": "09:00:00",
-        "offset": 540,
-        "ratio": 10.5
-      },
-      {
-        "i": 3,
-        "start": "10:00:00",
-        "offset": 600,
-        "ratio": 10.5
-      },
-      {
-        "i": 4,
-        "start": "11:00:00",
-        "offset": 660,
-        "ratio": 10.5
-      },
-      {
-        "i": 5,
-        "start": "12:00:00",
-        "offset": 720,
-        "ratio": 11
-      },
-      {
-        "i": 6,
-        "start": "13:00:00",
-        "offset": 780,
-        "ratio": 12
-      },
-      {
-        "i": 7,
-        "start": "16:00:00",
-        "offset": 960,
-        "ratio": 12.5
-      },
-      {
-        "i": 8,
-        "start": "17:00:00",
-        "offset": 1020,
-        "ratio": 13.5
-      },
-      {
-        "i": 9,
-        "start": "18:00:00",
-        "offset": 1080,
-        "ratio": 13.5
-      },
-      {
-        "i": 10,
-        "start": "20:00:00",
-        "offset": 1200,
-        "ratio": 13.5
-      },
-      {
-        "i": 11,
-        "start": "21:00:00",
-        "offset": 1260,
-        "ratio": 16
-      },
-      {
-        "i": 12,
-        "start": "22:00:00",
-        "offset": 1320,
-        "ratio": 16.5
+        "ratio": 13.3
       }
     ]
   },
@@ -379,69 +307,9 @@
     "sensitivities": [
       {
         "i": 0,
-        "sensitivity": 15,
+        "sensitivity": 14.2,
         "offset": 0,
         "start": "00:00:00"
-      },
-      {
-        "i": 1,
-        "sensitivity": 15,
-        "offset": 240,
-        "start": "04:00:00"
-      },
-      {
-        "i": 2,
-        "sensitivity": 13.5,
-        "offset": 420,
-        "start": "07:00:00"
-      },
-      {
-        "i": 3,
-        "sensitivity": 13.5,
-        "offset": 540,
-        "start": "09:00:00"
-      },
-      {
-        "i": 4,
-        "sensitivity": 13.5,
-        "offset": 660,
-        "start": "11:00:00"
-      },
-      {
-        "i": 5,
-        "sensitivity": 13.5,
-        "offset": 720,
-        "start": "12:00:00"
-      },
-      {
-        "i": 6,
-        "sensitivity": 14,
-        "offset": 840,
-        "start": "14:00:00"
-      },
-      {
-        "i": 7,
-        "sensitivity": 14,
-        "offset": 960,
-        "start": "16:00:00"
-      },
-      {
-        "i": 8,
-        "sensitivity": 13.5,
-        "offset": 1140,
-        "start": "19:00:00"
-      },
-      {
-        "i": 9,
-        "sensitivity": 14,
-        "offset": 1200,
-        "start": "20:00:00"
-      },
-      {
-        "i": 10,
-        "sensitivity": 15,
-        "offset": 1380,
-        "start": "23:00:00"
       }
     ]
   },

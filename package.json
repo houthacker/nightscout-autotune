@@ -1,6 +1,6 @@
 {
   "name": "nightscout-autotune",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Run OpenAPS autotune using an automatically converted Nightscout profile.",
   "keywords": [
     "nightscout",

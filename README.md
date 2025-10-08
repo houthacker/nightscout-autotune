@@ -61,6 +61,13 @@ Run the image without arguments to see its usage description and examples
 $ docker run --rm houthacker42/nightscout-autotune:latest
 ```
 
+#### Extract HTML page with recommendations to your linux pc and view it in your browser
+```bash
+$ docker run <arguments> houthacker42/nightscout-autotune:latest
+$ docker cp $(docker ps -a|grep nightscout-autotune|awk '{print $1}')/tmp/autotune/autotune/autotune_recommendations.html <local path>
+$ open <local path>
+```
+
 #### Standalone app
 Run the app without arguments or with `--help` to see its usage description and examples.
 ```bash

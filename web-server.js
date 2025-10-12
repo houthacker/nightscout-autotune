@@ -139,6 +139,14 @@ const formHtml = `
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="insulin_type">Insulin Type:</label>
+                <select id="insulin_type" name="insulin_type">
+                    <option value="ULTRA_RAPID" selected>ULTRA_RAPID</option>
+                    <option value="RAPID">RAPID</option>
+                </select>
+            </div>
+
             <button type="submit" id="submitBtn">Run Autotune</button>
         </form>
 
@@ -215,7 +223,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/run-autotune", async (req, res) => {
-  const { ns_host, autotune_days, api_secret, uam_as_basal } = req.body;
+  const { ns_host, autotune_days, api_secret, uam_as_basal, insulin_type } =
+    req.body;
 
   // Validate required fields
   if (!ns_host || !autotune_days) {
@@ -237,12 +246,19 @@ app.post("/run-autotune", async (req, res) => {
     // Mark as active
     activeProcesses.set(requestId, true);
 
+    // Map form values to InsulinType constants
+    const insulinTypeMap = {
+      ULTRA_RAPID: "ultra-rapid",
+      RAPID: "rapid-acting",
+    };
+
     // Set environment variables
     const env = {
       ...process.env,
       NS_HOST: ns_host,
       AUTOTUNE_DAYS: autotune_days,
       UAM_AS_BASAL: uam_as_basal === "true" ? "true" : "false",
+      INSULIN_TYPE: insulinTypeMap[insulin_type] || "ultra-rapid",
       HTML_EXPORT: "true",
       OPENAPS_WORKDIR: workDir,
     };

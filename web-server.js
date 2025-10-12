@@ -128,7 +128,7 @@ const formHtml = `
             </div>
 
             <div class="form-group">
-                <label for="api_secret">API Key:</label>
+                <label for="api_secret">Access Token:</label>
                 <input type="password" id="api_secret" name="api_secret" placeholder="API secret or token (optional)">
             </div>
 

@@ -12,6 +12,32 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 80;
 
+// Authentication middleware
+const webUiPassword = process.env.WEB_UI_PASSWORD;
+if (webUiPassword && webUiPassword.trim() !== "") {
+  app.use((req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Basic ")) {
+      res.setHeader("WWW-Authenticate", 'Basic realm="Nightscout Autotune"');
+      return res.status(401).send("Authentication required");
+    }
+
+    const base64Credentials = authHeader.split(" ")[1];
+    const credentials = Buffer.from(base64Credentials, "base64").toString(
+      "ascii"
+    );
+    const [username, password] = credentials.split(":");
+
+    if (password !== webUiPassword) {
+      res.setHeader("WWW-Authenticate", 'Basic realm="Nightscout Autotune"');
+      return res.status(401).send("Authentication required");
+    }
+
+    next();
+  });
+}
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

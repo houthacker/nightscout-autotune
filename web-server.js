@@ -146,7 +146,7 @@ const formHtml = `
         <form id="autotuneForm">
             <div class="form-group">
                 <label for="ns_host">Host:</label>
-                <input type="text" id="ns_host" name="ns_host" placeholder="https://your.nightscout.host" required>
+                <input type="text" id="ns_host" name="ns_host" placeholder="https://yourname.freemyscout.co.uk" required>
             </div>
 
             <div class="form-group">

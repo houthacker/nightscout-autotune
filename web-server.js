@@ -31,8 +31,7 @@ const formHtml = `
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
+            margin: 0;
             padding: 20px;
             background-color: #f5f5f5;
         }
@@ -41,6 +40,8 @@ const formHtml = `
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
         }
         h1 {
             color: #333;
@@ -141,6 +142,7 @@ const formHtml = `
 
             <div class="form-group">
                 <label for="insulin_type">Insulin Type:</label>
+                <p>Select the type of insulin you are using. If you are using Fiasp or Lyumjev, select ULTRA_RAPID. For Humalog, Novolog, Apidra, or other rapid-acting insulins, select RAPID.</p>
                 <select id="insulin_type" name="insulin_type">
                     <option value="ULTRA_RAPID" selected>ULTRA_RAPID</option>
                     <option value="RAPID">RAPID</option>

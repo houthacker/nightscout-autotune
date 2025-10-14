@@ -8,5 +8,8 @@ RUN npm run global-install
 
 WORKDIR /converter
 COPY . .
-RUN npm install -g
-CMD ["/bin/sh", "-c", "nightscout-autotune" ]
+RUN sed -i 's/\r$//' bin/app.sh bin/run-autotune.sh
+RUN npm install
+RUN npm install -g .
+EXPOSE 80
+CMD ["node", "web-server.js"]
